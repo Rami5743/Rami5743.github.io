@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דף הגיטהב של רמי</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --card: #ffffff;
+    --text: #1d1b16;
+    --muted: #6b665c;
+    --line: #e5e1d8;
+    --accent: #8a5a2b;
+    --accent-soft: #f3ece3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15140f;
+      --card: #1e1c17;
+      --text: #f0ede6;
+      --muted: #a39d91;
+      --line: #322e26;
+      --accent: #d9a46c;
+      --accent-soft: #2a241b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15140f;
+    --card: #1e1c17;
+    --text: #f0ede6;
+    --muted: #a39d91;
+    --line: #322e26;
+    --accent: #d9a46c;
+    --accent-soft: #2a241b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 16px 4rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    margin: 0 0 2.5rem;
+    font-size: 1.02rem;
+  }
+  .intro p { margin: 0; }
+  .intro p + p {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+  .en { text-align: left; }
+  .sub {
+    display: block;
+    font-size: 0.72em;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: left;
+    letter-spacing: 0;
+    margin-top: 0.1rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  ul.links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  ul.links li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  ul.links li:hover { border-color: var(--accent); transform: translateY(-1px); }
+  ul.links a {
+    display: block;
+    padding: 0.85rem 1.1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  ul.links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 12px; }
+  .name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .repo {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    direction: ltr;
+    text-align: right;
+    margin-top: 0.15rem;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); }
+  footer p { margin: 0 0 0.3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>דף הגיטהב של רמי<span class="sub" dir="ltr">Rami's GitHub page</span></h1>
+
+  <div class="intro">
+    <p>שלום, זהו דף הגיטהב של רמי. יש כאן קישורים לדפים שונים שאני יצרתי/עובד עליהם. רובם בשלבי עבודה ורחוקים מלהיות מוגמרים. כולם יכולים להכיל הרבה טעויות. השימוש על אחריותכם בלבד.</p>
+    <p lang="en" dir="ltr" class="en">Hello, this is Rami's GitHub page. It holds links to various pages that I created or am working on. Most of them are work in progress and far from finished. All of them may contain many mistakes. Use at your own risk.</p>
+  </div>
+
+  <h2>הדפים<span class="sub" dir="ltr">The pages</span></h2>
+  <ul class="links">
+    <li><a href="https://rami5743.github.io/elementals/"><span class="name">Elementals Levels</span><span class="repo">elementals</span></a></li>
+    <li><a href="https://rami5743.github.io/Prince/"><span class="name">Prince of Persia, Reconstructed</span><span class="repo">Prince</span></a></li>
+    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="name">המרת עץ משפחה לתרשים</span><span class="repo">Transform-tree</span></a></li>
+    <li><a href="https://rami5743.github.io/ChemGame/"><span class="name">ChemGame</span><span class="repo">ChemGame</span></a></li>
+    <li><a href="https://rami5743.github.io/Euclid/"><span class="name">אוקלידס</span><span class="repo">Euclid</span></a></li>
+    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="name">סוליטר מילים</span><span class="repo">Cat_sol</span></a></li>
+    <li><a href="https://rami5743.github.io/SM/"><span class="name">SM</span><span class="repo">SM</span></a></li>
+    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="name">המכונה האחת</span><span class="repo">TheOneMachine</span></a></li>
+    <li><a href="https://rami5743.github.io/edu_sources/"><span class="name">מקורות לימוד מומלצים</span><span class="repo">edu_sources</span></a></li>
+  </ul>
+
+  <footer>
+    <p>כל הקוד נמצא ב<a href="https://github.com/Rami5743">חשבון הגיטהב</a>.</p>
+    <p lang="en" dir="ltr" class="en">All the code lives in the <a href="https://github.com/Rami5743">GitHub account</a>.</p>
+  </footer>
+</div>
+</body>
+</html>
