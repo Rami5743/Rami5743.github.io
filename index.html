@@ -101,12 +101,28 @@
   }
   ul.links li:hover { border-color: var(--accent); transform: translateY(-1px); }
   ul.links a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
     padding: 0.85rem 1.1rem;
     text-decoration: none;
     color: inherit;
   }
   ul.links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 12px; }
+  .ico {
+    flex: none;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    line-height: 1;
+    border-radius: 9px;
+    background: var(--accent-soft);
+    overflow: hidden;
+  }
+  .ico img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .text { min-width: 0; }
   .name {
     font-size: 1.05rem;
     font-weight: 600;
@@ -143,18 +159,18 @@
 
   <h2>הדפים<span class="sub" dir="ltr">The pages</span></h2>
   <ul class="links">
-    <li><a href="https://rami5743.github.io/elementals/"><span class="name">Elementals Levels</span><span class="repo">elementals</span></a></li>
-    <li><a href="https://rami5743.github.io/Prince/"><span class="name">Prince of Persia, Reconstructed</span><span class="repo">Prince</span></a></li>
-    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="name">המרת עץ משפחה לתרשים</span><span class="repo">Transform-tree</span></a></li>
-    <li><a href="https://rami5743.github.io/ChemGame/"><span class="name">אטומים ומולקולות</span><span class="repo">ChemGame</span></a></li>
-    <li><a href="https://rami5743.github.io/Euclid/"><span class="name">אוקלידס</span><span class="repo">Euclid</span></a></li>
-    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="name">סוליטר מילים</span><span class="repo">Cat_sol</span></a></li>
-    <li><a href="https://rami5743.github.io/SM/"><span class="name">Stack Machine</span><span class="repo">SM</span></a></li>
-    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="name">המכונה האחת</span><span class="repo">TheOneMachine</span></a></li>
-    <li><a href="https://rami5743.github.io/edu_sources/"><span class="name">מקורות לימוד מומלצים</span><span class="repo">edu_sources</span></a></li>
-    <li><a href="https://rami5743.github.io/Grp_Tab/"><span class="name">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span class="repo">Grp_Tab</span></a></li>
-    <li><a href="https://rami5743.github.io/PNT_Pub/"><span class="name">משפט המספרים הראשוניים — סרטון</span><span class="repo">PNT_Pub</span></a></li>
-    <li><a href="https://rami5743.github.io/AI_MANIM/"><span class="name">סקיל ליצירת סרטוני הסבר עם Manim</span><span class="repo">AI_MANIM</span></a></li>
+    <li><a href="https://rami5743.github.io/elementals/"><span class="ico" aria-hidden="true">🔥</span><span class="text"><span class="name">Elementals Levels</span><span class="repo">elementals</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name">Prince of Persia, Reconstructed</span><span class="repo">Prince</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name">המרת עץ משפחה לתרשים</span><span class="repo">Transform-tree</span></span></a></li>
+    <li><a href="https://rami5743.github.io/ChemGame/"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name">אטומים ומולקולות</span><span class="repo">ChemGame</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name">אוקלידס</span><span class="repo">Euclid</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name">סוליטר מילים</span><span class="repo">Cat_sol</span></span></a></li>
+    <li><a href="https://rami5743.github.io/SM/"><span class="ico" aria-hidden="true">🧮</span><span class="text"><span class="name">Stack Machine</span><span class="repo">SM</span></span></a></li>
+    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="ico" aria-hidden="true">⚙️</span><span class="text"><span class="name">המכונה האחת</span><span class="repo">TheOneMachine</span></span></a></li>
+    <li><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name">מקורות לימוד מומלצים</span><span class="repo">edu_sources</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span class="repo">Grp_Tab</span></span></a></li>
+    <li><a href="https://rami5743.github.io/PNT_Pub/"><span class="ico" aria-hidden="true">🎬</span><span class="text"><span class="name">משפט המספרים הראשוניים — סרטון</span><span class="repo">PNT_Pub</span></span></a></li>
+    <li><a href="https://rami5743.github.io/AI_MANIM/"><span class="ico" aria-hidden="true">🎞️</span><span class="text"><span class="name">סקיל ליצירת סרטוני הסבר עם Manim</span><span class="repo">AI_MANIM</span></span></a></li>
   </ul>
 
   <footer>
@@ -162,5 +178,40 @@
     <p lang="en" dir="ltr" class="en">All the code lives in the <a href="https://github.com/Rami5743">GitHub account</a>.</p>
   </footer>
 </div>
+<script>
+// Each linked site's own icon, read from its page (all of them live on this
+// same domain): the <link rel="icon"> it declares, the largest or an SVG one.
+// A site without one keeps the emoji written in the list.
+(function () {
+  "use strict";
+  function size(l) {
+    var m = /(\d+)x\d+/.exec(l.getAttribute("sizes") || "");
+    return m ? +m[1] : 0;
+  }
+  document.querySelectorAll("ul.links a").forEach(function (a) {
+    var box = a.querySelector(".ico");
+    if (!box) return;
+    fetch(a.href, { cache: "force-cache" })
+      .then(function (r) { return r.ok ? r.text() : ""; })
+      .then(function (html) {
+        if (!html) return;
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var links = Array.prototype.slice.call(
+          doc.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'));
+        if (!links.length) return;
+        links.sort(function (x, y) {
+          var sx = /svg/.test(x.getAttribute("type") || x.getAttribute("href")) ? 1e6 : size(x);
+          var sy = /svg/.test(y.getAttribute("type") || y.getAttribute("href")) ? 1e6 : size(y);
+          return sy - sx;
+        });
+        var img = new Image();
+        img.alt = "";
+        img.onload = function () { box.textContent = ""; box.appendChild(img); };
+        img.src = new URL(links[0].getAttribute("href"), a.href).href;
+      })
+      .catch(function () {});
+  });
+})();
+</script>
 </body>
 </html>
