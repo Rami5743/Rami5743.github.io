@@ -7,7 +7,10 @@
 <script>
 (function () {
   "use strict";
+  // The address uses the short codes; <html lang> carries the full tag,
+  // because the English is American English, as the flag says.
   var DIR = { he: "rtl", en: "ltr" };
+  var TAG = { he: "he", en: "en-US" };
   var DEFAULT = "he";
   var root = document.documentElement;
 
@@ -21,7 +24,7 @@
   }
 
   function apply(lang) {
-    root.lang = lang;
+    root.lang = TAG[lang];
     root.dir = DIR[lang];
     var t = root.getAttribute("data-title-" + lang);
     if (t) document.title = t;
@@ -46,7 +49,7 @@
   }
 
   var lang = fromAddress();
-  root.lang = lang;
+  root.lang = TAG[lang];
   root.dir = DIR[lang];
   document.addEventListener("DOMContentLoaded", function () { apply(lang); });
   document.addEventListener("click", function (e) {
@@ -59,7 +62,7 @@
 })();
 </script>
 <link rel="alternate" hreflang="he" href="https://rami5743.github.io/">
-<link rel="alternate" hreflang="en" href="https://rami5743.github.io/?lang=en">
+<link rel="alternate" hreflang="en-US" href="https://rami5743.github.io/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://rami5743.github.io/">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
@@ -112,21 +115,23 @@
   /* Each text exists twice, marked data-l="he" and data-l="en";
      only the one matching the page's language is shown. */
   html[lang="he"] [data-l="en"],
-  html[lang="en"] [data-l="he"] { display: none !important; }
+  html[lang|="en"] [data-l="he"] { display: none !important; }
 
   .lang-switch { display: flex; gap: 6px; }
   .lang-switch a {
-    display: inline-flex; padding: 3px; line-height: 0;
-    border: 1px solid var(--line, #d9d6cd); border-radius: 6px;
-    opacity: 0.5; transition: opacity .15s ease, border-color .15s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding-block: 3px; padding-inline: 4px 9px;
+    border: 1px solid var(--line, #d9d6cd); border-radius: 7px;
+    color: inherit; text-decoration: none; font-size: 0.85rem; line-height: 1.4;
+    opacity: 0.55; transition: opacity .15s ease, border-color .15s ease;
   }
   .lang-switch a:hover { opacity: 0.85; }
   .lang-switch a:focus-visible { outline: 2px solid var(--accent, #333); outline-offset: 2px; }
   html[lang="he"] .lang-switch [data-set-lang="he"],
-  html[lang="en"] .lang-switch [data-set-lang="en"] {
+  html[lang|="en"] .lang-switch [data-set-lang="en"] {
     opacity: 1; border-color: var(--accent, #333);
   }
-  .lang-switch svg { width: 26px; height: 18px; display: block; border-radius: 2px; }
+  .lang-switch svg { width: 24px; height: 17px; display: block; flex: none; border-radius: 2px; }
   h1 {
     font-size: 1.9rem;
     margin: 0 0 1.25rem;
@@ -211,42 +216,44 @@
 <div class="wrap">
   <header class="top">
   <nav class="lang-switch" aria-label="שפה · Language">
-    <a href="?lang=he" data-set-lang="he" hreflang="he" lang="he" title="עברית" aria-label="עברית">
+    <a href="?lang=he" data-set-lang="he" hreflang="he" lang="he" dir="rtl">
       <svg viewBox="0 0 33 24" aria-hidden="true"><rect width="33" height="24" fill="#fff"/><rect y="2.5" width="33" height="3" fill="#0038b8"/><rect y="18.5" width="33" height="3" fill="#0038b8"/><g fill="none" stroke="#0038b8" stroke-width="1.1"><path d="M16.5 7.6l3.4 5.9h-6.8z"/><path d="M16.5 16.4l-3.4-5.9h6.8z"/></g></svg>
+      <span>עברית</span>
     </a>
-    <a href="?lang=en" data-set-lang="en" hreflang="en" lang="en" title="English" aria-label="English">
+    <a href="?lang=en" data-set-lang="en" hreflang="en-US" lang="en-US" dir="ltr">
       <svg viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#b22234"/><rect y="2.308" width="60" height="2.308" fill="#fff"/><rect y="6.923" width="60" height="2.308" fill="#fff"/><rect y="11.538" width="60" height="2.308" fill="#fff"/><rect y="16.154" width="60" height="2.308" fill="#fff"/><rect y="20.769" width="60" height="2.308" fill="#fff"/><rect y="25.385" width="60" height="2.308" fill="#fff"/><rect width="24" height="16.154" fill="#3c3b6e"/><g fill="#fff"><circle cx="3.43" cy="1.62" r="0.62"/><circle cx="6.86" cy="1.62" r="0.62"/><circle cx="10.29" cy="1.62" r="0.62"/><circle cx="13.71" cy="1.62" r="0.62"/><circle cx="17.14" cy="1.62" r="0.62"/><circle cx="20.57" cy="1.62" r="0.62"/><circle cx="4.0" cy="3.23" r="0.62"/><circle cx="8.0" cy="3.23" r="0.62"/><circle cx="12.0" cy="3.23" r="0.62"/><circle cx="16.0" cy="3.23" r="0.62"/><circle cx="20.0" cy="3.23" r="0.62"/><circle cx="3.43" cy="4.85" r="0.62"/><circle cx="6.86" cy="4.85" r="0.62"/><circle cx="10.29" cy="4.85" r="0.62"/><circle cx="13.71" cy="4.85" r="0.62"/><circle cx="17.14" cy="4.85" r="0.62"/><circle cx="20.57" cy="4.85" r="0.62"/><circle cx="4.0" cy="6.46" r="0.62"/><circle cx="8.0" cy="6.46" r="0.62"/><circle cx="12.0" cy="6.46" r="0.62"/><circle cx="16.0" cy="6.46" r="0.62"/><circle cx="20.0" cy="6.46" r="0.62"/><circle cx="3.43" cy="8.08" r="0.62"/><circle cx="6.86" cy="8.08" r="0.62"/><circle cx="10.29" cy="8.08" r="0.62"/><circle cx="13.71" cy="8.08" r="0.62"/><circle cx="17.14" cy="8.08" r="0.62"/><circle cx="20.57" cy="8.08" r="0.62"/><circle cx="4.0" cy="9.69" r="0.62"/><circle cx="8.0" cy="9.69" r="0.62"/><circle cx="12.0" cy="9.69" r="0.62"/><circle cx="16.0" cy="9.69" r="0.62"/><circle cx="20.0" cy="9.69" r="0.62"/><circle cx="3.43" cy="11.31" r="0.62"/><circle cx="6.86" cy="11.31" r="0.62"/><circle cx="10.29" cy="11.31" r="0.62"/><circle cx="13.71" cy="11.31" r="0.62"/><circle cx="17.14" cy="11.31" r="0.62"/><circle cx="20.57" cy="11.31" r="0.62"/><circle cx="4.0" cy="12.92" r="0.62"/><circle cx="8.0" cy="12.92" r="0.62"/><circle cx="12.0" cy="12.92" r="0.62"/><circle cx="16.0" cy="12.92" r="0.62"/><circle cx="20.0" cy="12.92" r="0.62"/><circle cx="3.43" cy="14.54" r="0.62"/><circle cx="6.86" cy="14.54" r="0.62"/><circle cx="10.29" cy="14.54" r="0.62"/><circle cx="13.71" cy="14.54" r="0.62"/><circle cx="17.14" cy="14.54" r="0.62"/><circle cx="20.57" cy="14.54" r="0.62"/></g></svg>
+      <span>English</span>
     </a>
   </nav>
   </header>
 
-  <h1><span data-l="he">דף הגיטהב של רמי</span><span data-l="en" lang="en">Rami's GitHub page</span></h1>
+  <h1><span data-l="he">דף הגיטהב של רמי</span><span data-l="en" lang="en-US">Rami's GitHub page</span></h1>
 
   <div class="intro">
     <p data-l="he">שלום, זהו דף הגיטהב של רמי. יש כאן קישורים לדפים שונים שאני יצרתי/עובד עליהם. רובם בשלבי עבודה ורחוקים מלהיות מוגמרים. כולם יכולים להכיל הרבה טעויות. השימוש על אחריותכם בלבד.</p>
-    <p data-l="en" lang="en">Hello, this is Rami's GitHub page. It holds links to various pages that I created or am working on. Most of them are work in progress and far from finished. All of them may contain many mistakes. Use at your own risk.</p>
+    <p data-l="en" lang="en-US">Hello, this is Rami's GitHub page. It holds links to various pages that I created or am working on. Most of them are work in progress and far from finished. All of them may contain many mistakes. Use at your own risk.</p>
   </div>
 
-  <h2><span data-l="he">הדפים</span><span data-l="en" lang="en">The pages</span></h2>
+  <h2><span data-l="he">הדפים</span><span data-l="en" lang="en-US">The pages</span></h2>
   <ul class="links">
     <li><a href="https://rami5743.github.io/elementals/"><span class="ico" aria-hidden="true">🔥</span><span class="text"><span class="name">Elementals Levels</span><span class="repo">elementals</span></span></a></li>
     <li><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name">Prince of Persia, Reconstructed</span><span class="repo">Prince</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name"><span data-l="he">המרת עץ משפחה לתרשים</span><span data-l="en" lang="en">Family tree to chart</span></span><span class="repo">Transform-tree</span></span></a></li>
-    <li><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en">Atoms &amp; Molecules</span></span><span class="repo">ChemGame</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name"><span data-l="he">אוקלידס</span><span data-l="en" lang="en">Euclid</span></span><span class="repo">Euclid</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en">Word Solitaire</span></span><span class="repo">Cat_sol</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name"><span data-l="he">המרת עץ משפחה לתרשים</span><span data-l="en" lang="en-US">Family tree to chart</span></span><span class="repo">Transform-tree</span></span></a></li>
+    <li><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en-US">Atoms &amp; Molecules</span></span><span class="repo">ChemGame</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name"><span data-l="he">אוקלידס</span><span data-l="en" lang="en-US">Euclid</span></span><span class="repo">Euclid</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en-US">Word Solitaire</span></span><span class="repo">Cat_sol</span></span></a></li>
     <li><a href="https://rami5743.github.io/SM/"><span class="ico" aria-hidden="true">🧮</span><span class="text"><span class="name">Stack Machine</span><span class="repo">SM</span></span></a></li>
-    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="ico" aria-hidden="true">⚙️</span><span class="text"><span class="name"><span data-l="he">המכונה האחת</span><span data-l="en" lang="en">The One Machine</span></span><span class="repo">TheOneMachine</span></span></a></li>
-    <li><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name"><span data-l="he">מקורות לימוד מומלצים</span><span data-l="en" lang="en">Recommended learning resources</span></span><span class="repo">edu_sources</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en">A Periodic Table of the Finite Simple Groups</span></span><span class="repo">Grp_Tab</span></span></a></li>
-    <li><a href="https://rami5743.github.io/PNT_Pub/" data-href-en="https://rami5743.github.io/PNT_Pub/#en"><span class="ico" aria-hidden="true">🎬</span><span class="text"><span class="name"><span data-l="he">משפט המספרים הראשוניים — סרטון</span><span data-l="en" lang="en">The Prime Number Theorem — a video</span></span><span class="repo">PNT_Pub</span></span></a></li>
-    <li><a href="https://rami5743.github.io/AI_MANIM/" data-href-en="https://rami5743.github.io/AI_MANIM/#en"><span class="ico" aria-hidden="true">🎞️</span><span class="text"><span class="name"><span data-l="he">סקיל ליצירת סרטוני הסבר עם Manim</span><span data-l="en" lang="en">A skill for making explainer videos with Manim</span></span><span class="repo">AI_MANIM</span></span></a></li>
-    <li><a href="https://rami5743.github.io/dna/"><span class="ico" aria-hidden="true">🧬</span><span class="text"><span class="name"><span data-l="he">דפדפן הגנום — כרומוזום 7</span><span data-l="en" lang="en">Genome browser — chromosome 7</span></span><span class="repo">dna</span></span></a></li>
+    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="ico" aria-hidden="true">⚙️</span><span class="text"><span class="name"><span data-l="he">המכונה האחת</span><span data-l="en" lang="en-US">The One Machine</span></span><span class="repo">TheOneMachine</span></span></a></li>
+    <li><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name"><span data-l="he">מקורות לימוד מומלצים</span><span data-l="en" lang="en-US">Recommended learning resources</span></span><span class="repo">edu_sources</span></span></a></li>
+    <li><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en-US">A Periodic Table of the Finite Simple Groups</span></span><span class="repo">Grp_Tab</span></span></a></li>
+    <li><a href="https://rami5743.github.io/PNT_Pub/" data-href-en="https://rami5743.github.io/PNT_Pub/#en"><span class="ico" aria-hidden="true">🎬</span><span class="text"><span class="name"><span data-l="he">משפט המספרים הראשוניים — סרטון</span><span data-l="en" lang="en-US">The Prime Number Theorem — a video</span></span><span class="repo">PNT_Pub</span></span></a></li>
+    <li><a href="https://rami5743.github.io/AI_MANIM/" data-href-en="https://rami5743.github.io/AI_MANIM/#en"><span class="ico" aria-hidden="true">🎞️</span><span class="text"><span class="name"><span data-l="he">סקיל ליצירת סרטוני הסבר עם Manim</span><span data-l="en" lang="en-US">A skill for making explainer videos with Manim</span></span><span class="repo">AI_MANIM</span></span></a></li>
+    <li><a href="https://rami5743.github.io/dna/"><span class="ico" aria-hidden="true">🧬</span><span class="text"><span class="name"><span data-l="he">דפדפן הגנום</span><span data-l="en" lang="en-US">Genome browser</span></span><span class="repo">dna</span></span></a></li>
   </ul>
 
   <footer>
     <p data-l="he">כל הקוד נמצא ב<a href="https://github.com/Rami5743">חשבון הגיטהב</a>.</p>
-    <p data-l="en" lang="en">All the code lives in the <a href="https://github.com/Rami5743">GitHub account</a>.</p>
+    <p data-l="en" lang="en-US">All the code lives in the <a href="https://github.com/Rami5743">GitHub account</a>.</p>
   </footer>
 </div>
 <script>
