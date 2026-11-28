@@ -117,6 +117,10 @@
   html[lang="he"] [data-l="en"],
   html[lang|="en"] [data-l="he"] { display: none !important; }
 
+  /* Text kept in the other script is isolated, so the commas and spaces
+     around it keep their places: "ק, ו, פ and ט" stays in that order. */
+  [translate="no"] { unicode-bidi: isolate; }
+
   .lang-switch { display: flex; gap: 6px; }
   .lang-switch a {
     display: inline-flex; align-items: center; gap: 6px;
@@ -285,6 +289,7 @@
     <li data-repo="dna" data-created="2026-08-24T08:22:46Z" data-modified="2026-11-28T04:44:17Z"><a href="https://rami5743.github.io/dna/"><span class="ico" aria-hidden="true">🧬</span><span class="text"><span class="name"><span data-l="he">דפדפן הגנום</span><span data-l="en" lang="en-US">Genome browser</span></span><span class="repo" translate="no">dna</span></span><span class="dates"></span></a></li>
     <li data-repo="edu_sources" data-created="2026-09-17T04:40:49Z" data-modified="2026-11-25T13:10:57Z"><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name"><span data-l="he">מקורות לימוד מומלצים</span><span data-l="en" lang="en-US">Recommended learning resources</span></span><span class="repo" translate="no">edu_sources</span></span><span class="dates"></span></a></li>
     <li data-repo="SM" data-created="2026-10-03T10:17:55Z" data-modified="2026-11-25T13:19:07Z"><a href="https://rami5743.github.io/SM/"><span class="ico" aria-hidden="true">🧮</span><span class="text"><span class="name"><span data-l="he">מכונת מחסנית</span><span data-l="en" lang="en-US">Stack Machine</span></span><span class="repo" translate="no">SM</span></span><span class="dates"></span></a></li>
+    <li data-repo="Ph_He" data-created="2026-10-09T08:20:49Z" data-modified="2026-11-28T05:50:25Z"><a href="https://rami5743.github.io/Ph_He/" data-href-en="https://rami5743.github.io/Ph_He/?lang=en"><span class="ico" aria-hidden="true">⌨️</span><span class="text"><span class="name"><span data-l="he">מקלדת עברית פונטית לאנדרואיד</span><span data-l="en" lang="en-US">Phonetic Hebrew keyboard for Android</span></span><span class="repo" translate="no">Ph_He</span></span><span class="dates"></span></a></li>
     <li data-repo="Cat_sol" data-created="2026-10-17T14:42:28Z" data-modified="2026-11-25T13:19:45Z"><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en-US">Word Solitaire</span></span><span class="repo" translate="no">Cat_sol</span></span><span class="dates"></span></a></li>
     <li data-repo="Grp_Tab" data-created="2026-10-25T15:13:31Z" data-modified="2026-11-25T20:29:34Z"><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en-US">A Periodic Table of the Finite Simple Groups</span></span><span class="repo" translate="no">Grp_Tab</span></span><span class="dates"></span></a></li>
     <li data-repo="ChemGame" data-created="2026-11-04T02:12:49Z" data-modified="2026-11-25T13:11:04Z"><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en-US">Atoms &amp; Molecules</span></span><span class="repo" translate="no">ChemGame</span></span><span class="dates"></span></a></li>
