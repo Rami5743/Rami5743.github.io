@@ -188,7 +188,43 @@
     overflow: hidden;
   }
   .ico img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .text { min-width: 0; }
+  .text { min-width: 0; flex: 1 1 auto; }
+  .dates {
+    flex: none;
+    margin-inline-start: auto;
+    text-align: end;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .dates span { display: block; }
+  .dates .key { color: var(--text); font-weight: 600; }
+  @media (max-width: 560px) {
+    ul.links a { display: grid; grid-template-columns: auto 1fr; column-gap: 0.9rem; row-gap: 0.25rem; }
+    .dates { grid-column: 2; margin: 0; text-align: start; white-space: normal; }
+    .dates span { display: inline; }
+    .dates span + span::before { content: " · "; font-weight: 400; color: var(--muted); }
+  }
+  .list-head {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 0.6rem 1rem; margin: 0 0 1rem;
+  }
+  .list-head h2 { margin: 0; }
+  .sorter { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: 0.85rem; }
+  .sorter[hidden] { display: none; }
+  .sort-label { color: var(--muted); margin-inline-end: 0.15rem; }
+  .sorter button {
+    font: inherit; color: var(--text); background: var(--card);
+    border: 1px solid var(--line); border-radius: 7px;
+    padding: 0.2rem 0.6rem; cursor: pointer;
+    transition: border-color .15s ease;
+  }
+  .sorter button:hover { border-color: var(--accent); }
+  .sorter button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sorter button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .sorter .sort-dir { margin-inline-start: 0.35rem; }
+  .sort-dir .arrow { display: inline-block; margin-inline-end: 0.3rem; }
   .name {
     font-size: 1.05rem;
     font-weight: 600;
@@ -234,21 +270,30 @@
     <p data-l="en" lang="en-US">Hello, this is Rami's GitHub page. It holds links to various pages that I created or am working on. Most of them are work in progress and far from finished. All of them may contain many mistakes. Use at your own risk.</p>
   </div>
 
-  <h2><span data-l="he">הדפים</span><span data-l="en" lang="en-US">The pages</span></h2>
+  <div class="list-head">
+    <h2><span data-l="he">הדפים</span><span data-l="en" lang="en-US">The pages</span></h2>
+    <div class="sorter" role="group" aria-label="מיון · Sort" hidden>
+      <span class="sort-label"><span data-l="he">מיון:</span><span data-l="en" lang="en-US">Sort by:</span></span>
+      <button type="button" data-sort="created"><span data-l="he">תאריך יצירה</span><span data-l="en" lang="en-US">Date created</span></button>
+      <button type="button" data-sort="modified"><span data-l="he">עדכון אחרון</span><span data-l="en" lang="en-US">Last updated</span></button>
+      <button type="button" data-sort="name"><span data-l="he">שם</span><span data-l="en" lang="en-US">Name</span></button>
+      <button type="button" class="sort-dir"><span class="arrow" aria-hidden="true"></span><span data-l="he"></span><span data-l="en" lang="en-US"></span></button>
+    </div>
+  </div>
   <ul class="links">
-    <li><a href="https://rami5743.github.io/elementals/"><span class="ico" aria-hidden="true">🔥</span><span class="text"><span class="name"><span data-l="he">שלבים למשחק <span translate="no">Elementals</span></span><span data-l="en" lang="en-US">Elementals Levels</span></span><span class="repo" translate="no">elementals</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name"><span data-l="he">הנסיך הפרסי, משוחזר</span><span data-l="en" lang="en-US">Prince of Persia, Reconstructed</span></span><span class="repo" translate="no">Prince</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name"><span data-l="he">המרת עץ משפחה לתרשים</span><span data-l="en" lang="en-US">Family tree to chart</span></span><span class="repo" translate="no">Transform-tree</span></span></a></li>
-    <li><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en-US">Atoms &amp; Molecules</span></span><span class="repo" translate="no">ChemGame</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name"><span data-l="he">אוקלידס</span><span data-l="en" lang="en-US">Euclid</span></span><span class="repo" translate="no">Euclid</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en-US">Word Solitaire</span></span><span class="repo" translate="no">Cat_sol</span></span></a></li>
-    <li><a href="https://rami5743.github.io/SM/"><span class="ico" aria-hidden="true">🧮</span><span class="text"><span class="name"><span data-l="he">מכונת מחסנית</span><span data-l="en" lang="en-US">Stack Machine</span></span><span class="repo" translate="no">SM</span></span></a></li>
-    <li><a href="https://rami5743.github.io/TheOneMachine/"><span class="ico" aria-hidden="true">⚙️</span><span class="text"><span class="name"><span data-l="he">המכונה האחת</span><span data-l="en" lang="en-US">The One Machine</span></span><span class="repo" translate="no">TheOneMachine</span></span></a></li>
-    <li><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name"><span data-l="he">מקורות לימוד מומלצים</span><span data-l="en" lang="en-US">Recommended learning resources</span></span><span class="repo" translate="no">edu_sources</span></span></a></li>
-    <li><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en-US">A Periodic Table of the Finite Simple Groups</span></span><span class="repo" translate="no">Grp_Tab</span></span></a></li>
-    <li><a href="https://rami5743.github.io/PNT_Pub/" data-href-en="https://rami5743.github.io/PNT_Pub/#en"><span class="ico" aria-hidden="true">🎬</span><span class="text"><span class="name"><span data-l="he">משפט המספרים הראשוניים — סרטון</span><span data-l="en" lang="en-US">The Prime Number Theorem — a video</span></span><span class="repo" translate="no">PNT_Pub</span></span></a></li>
-    <li><a href="https://rami5743.github.io/AI_MANIM/" data-href-en="https://rami5743.github.io/AI_MANIM/#en"><span class="ico" aria-hidden="true">🎞️</span><span class="text"><span class="name"><span data-l="he">סקיל ליצירת סרטוני הסבר עם <span translate="no">Manim</span></span><span data-l="en" lang="en-US">A skill for making explainer videos with Manim</span></span><span class="repo" translate="no">AI_MANIM</span></span></a></li>
-    <li><a href="https://rami5743.github.io/dna/"><span class="ico" aria-hidden="true">🧬</span><span class="text"><span class="name"><span data-l="he">דפדפן הגנום</span><span data-l="en" lang="en-US">Genome browser</span></span><span class="repo" translate="no">dna</span></span></a></li>
+    <li data-repo="AI_MANIM" data-created="2026-11-26T14:45:27Z" data-modified="2026-11-28T04:49:37Z"><a href="https://rami5743.github.io/AI_MANIM/" data-href-en="https://rami5743.github.io/AI_MANIM/#en"><span class="ico" aria-hidden="true">🎞️</span><span class="text"><span class="name"><span data-l="he">סקיל ליצירת סרטוני הסבר עם <span translate="no">Manim</span></span><span data-l="en" lang="en-US">A skill for making explainer videos with Manim</span></span><span class="repo" translate="no">AI_MANIM</span></span><span class="dates"></span></a></li>
+    <li data-repo="PNT_Pub" data-created="2026-11-26T14:44:47Z" data-modified="2026-11-27T22:25:34Z"><a href="https://rami5743.github.io/PNT_Pub/" data-href-en="https://rami5743.github.io/PNT_Pub/#en"><span class="ico" aria-hidden="true">🎬</span><span class="text"><span class="name"><span data-l="he">משפט המספרים הראשוניים — סרטון</span><span data-l="en" lang="en-US">The Prime Number Theorem — a video</span></span><span class="repo" translate="no">PNT_Pub</span></span><span class="dates"></span></a></li>
+    <li data-repo="Transform-tree" data-created="2026-11-14T05:26:54Z" data-modified="2026-11-20T15:53:48Z"><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name"><span data-l="he">המרת עץ משפחה לתרשים</span><span data-l="en" lang="en-US">Family tree to chart</span></span><span class="repo" translate="no">Transform-tree</span></span><span class="dates"></span></a></li>
+    <li data-repo="elementals" data-created="2026-11-10T09:01:58Z" data-modified="2026-11-27T19:54:24Z"><a href="https://rami5743.github.io/elementals/"><span class="ico" aria-hidden="true">🔥</span><span class="text"><span class="name"><span data-l="he">שלבים למשחק <span translate="no">Elementals</span></span><span data-l="en" lang="en-US">Elementals Levels</span></span><span class="repo" translate="no">elementals</span></span><span class="dates"></span></a></li>
+    <li data-repo="Euclid" data-created="2026-11-08T17:58:48Z" data-modified="2026-11-10T08:52:09Z"><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name"><span data-l="he">אוקלידס</span><span data-l="en" lang="en-US">Euclid</span></span><span class="repo" translate="no">Euclid</span></span><span class="dates"></span></a></li>
+    <li data-repo="Prince" data-created="2026-11-06T04:39:27Z" data-modified="2026-11-23T07:58:05Z"><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name"><span data-l="he">הנסיך הפרסי, משוחזר</span><span data-l="en" lang="en-US">Prince of Persia, Reconstructed</span></span><span class="repo" translate="no">Prince</span></span><span class="dates"></span></a></li>
+    <li data-repo="ChemGame" data-created="2026-11-04T02:12:49Z" data-modified="2026-11-25T13:11:06Z"><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en-US">Atoms &amp; Molecules</span></span><span class="repo" translate="no">ChemGame</span></span><span class="dates"></span></a></li>
+    <li data-repo="Grp_Tab" data-created="2026-10-25T15:13:31Z" data-modified="2026-11-25T20:29:36Z"><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en-US">A Periodic Table of the Finite Simple Groups</span></span><span class="repo" translate="no">Grp_Tab</span></span><span class="dates"></span></a></li>
+    <li data-repo="Cat_sol" data-created="2026-10-17T14:42:28Z" data-modified="2026-11-25T13:19:47Z"><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en-US">Word Solitaire</span></span><span class="repo" translate="no">Cat_sol</span></span><span class="dates"></span></a></li>
+    <li data-repo="SM" data-created="2026-10-03T10:17:55Z" data-modified="2026-11-25T13:19:09Z"><a href="https://rami5743.github.io/SM/"><span class="ico" aria-hidden="true">🧮</span><span class="text"><span class="name"><span data-l="he">מכונת מחסנית</span><span data-l="en" lang="en-US">Stack Machine</span></span><span class="repo" translate="no">SM</span></span><span class="dates"></span></a></li>
+    <li data-repo="edu_sources" data-created="2026-09-17T04:40:49Z" data-modified="2026-11-25T13:10:59Z"><a href="https://rami5743.github.io/edu_sources/"><span class="ico" aria-hidden="true">📚</span><span class="text"><span class="name"><span data-l="he">מקורות לימוד מומלצים</span><span data-l="en" lang="en-US">Recommended learning resources</span></span><span class="repo" translate="no">edu_sources</span></span><span class="dates"></span></a></li>
+    <li data-repo="dna" data-created="2026-08-24T08:22:46Z" data-modified="2026-11-28T04:44:24Z"><a href="https://rami5743.github.io/dna/"><span class="ico" aria-hidden="true">🧬</span><span class="text"><span class="name"><span data-l="he">דפדפן הגנום</span><span data-l="en" lang="en-US">Genome browser</span></span><span class="repo" translate="no">dna</span></span><span class="dates"></span></a></li>
+    <li data-repo="TheOneMachine" data-created="2026-07-11T09:02:41Z" data-modified="2026-09-19T12:54:48Z"><a href="https://rami5743.github.io/TheOneMachine/"><span class="ico" aria-hidden="true">⚙️</span><span class="text"><span class="name"><span data-l="he">המכונה האחת</span><span data-l="en" lang="en-US">The One Machine</span></span><span class="repo" translate="no">TheOneMachine</span></span><span class="dates"></span></a></li>
   </ul>
 
   <footer>
@@ -256,6 +301,140 @@
     <p data-l="en" lang="en-US">All the code lives in the <a href="https://github.com/Rami5743">GitHub account</a>.</p>
   </footer>
 </div>
+<script>
+// Sorting the list: by date created, date of the last update, or name, each
+// either way. The dates are each repository's creation and last push on
+// GitHub; the ones written into the page are refreshed with one request to
+// the GitHub API, and stay as they are if that fails. The choice lives in the
+// address (?sort=…&order=…) when it is not the default, newest first.
+(function () {
+  "use strict";
+  var list = document.querySelector("ul.links");
+  var sorter = document.querySelector(".sorter");
+  if (!list || !sorter) return;
+  var root = document.documentElement;
+  var KEYS = { created: "desc", modified: "desc", name: "asc" };   // each key's natural order
+  var DEFAULT_KEY = "created";
+  var WORDS = {
+    he: { created: "נוצר", modified: "עודכן",
+          desc: { date: "מהחדש לישן", name: "ת–א" }, asc: { date: "מהישן לחדש", name: "א–ת" } },
+    en: { created: "Created", modified: "Updated",
+          desc: { date: "Newest first", name: "Z–A" }, asc: { date: "Oldest first", name: "A–Z" } }
+  };
+
+  var q = new URLSearchParams(location.search);
+  var key = KEYS[q.get("sort")] ? q.get("sort") : DEFAULT_KEY;
+  var order = q.get("order") === "asc" || q.get("order") === "desc" ? q.get("order") : KEYS[key];
+
+  function lang() { return /^en/.test(root.lang) ? "en" : "he"; }
+  function items() { return Array.prototype.slice.call(list.children); }
+  function nameOf(li) {
+    var el = li.querySelector('.name [data-l="' + lang() + '"]') || li.querySelector(".name");
+    return el.textContent.trim();
+  }
+
+  function renderDates() {
+    var l = lang(), w = WORDS[l];
+    var fmt = new Intl.DateTimeFormat(l === "en" ? "en-US" : "he-IL",
+      l === "en" ? { month: "short", day: "numeric", year: "numeric" }
+                 : { day: "numeric", month: "numeric", year: "numeric" });
+    items().forEach(function (li) {
+      var box = li.querySelector(".dates");
+      if (!box) return;
+      box.textContent = "";
+      ["created", "modified"].forEach(function (k) {
+        var span = document.createElement("span");
+        if (k === key) span.className = "key";
+        span.textContent = w[k] + " " + fmt.format(new Date(li.dataset[k]));
+        box.appendChild(span);
+      });
+    });
+  }
+
+  function renderControls() {
+    sorter.querySelectorAll("[data-sort]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-sort") === key));
+    });
+    var kind = key === "name" ? "name" : "date";
+    var dir = sorter.querySelector(".sort-dir");
+    dir.querySelector(".arrow").textContent = order === "desc" ? "↓" : "↑";
+    dir.querySelector('[data-l="he"]').textContent = WORDS.he[order][kind];
+    dir.querySelector('[data-l="en"]').textContent = WORDS.en[order][kind];
+  }
+
+  function sort() {
+    var l = lang();
+    var collator = new Intl.Collator(l === "en" ? "en-US" : "he", { sensitivity: "base", numeric: true });
+    var sign = order === "asc" ? 1 : -1;
+    var sorted = items().sort(function (a, b) {
+      var c = key === "name"
+        ? collator.compare(nameOf(a), nameOf(b))
+        : Date.parse(a.dataset[key]) - Date.parse(b.dataset[key]);
+      return sign * c || collator.compare(nameOf(a), nameOf(b));
+    });
+    sorted.forEach(function (li) { list.appendChild(li); });
+  }
+
+  function writeAddress() {
+    var url = new URL(location.href);
+    url.searchParams.delete("sort");
+    url.searchParams.delete("order");
+    if (key !== DEFAULT_KEY) url.searchParams.set("sort", key);
+    if (order !== KEYS[key]) url.searchParams.set("order", order);
+    history.replaceState(null, "", url);
+  }
+
+  function update() { renderControls(); renderDates(); sort(); }
+
+  sorter.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    if (b.classList.contains("sort-dir")) {
+      order = order === "asc" ? "desc" : "asc";
+    } else {
+      var k = b.getAttribute("data-sort");
+      if (k === key) order = order === "asc" ? "desc" : "asc";
+      else { key = k; order = KEYS[k]; }
+    }
+    writeAddress();
+    update();
+  });
+
+  // Names and date formats follow the page's language.
+  new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ["lang"] });
+
+  sorter.hidden = false;
+  update();
+
+  // Fresh dates from GitHub, kept for ten minutes in this tab.
+  var CACHE = "repo-dates", fresh = null;
+  try {
+    var kept = JSON.parse(sessionStorage.getItem(CACHE) || "null");
+    if (kept && Date.now() - kept.at < 10 * 60 * 1000) fresh = kept.repos;
+  } catch (err) { /* no storage: just fetch */ }
+  function applyFresh(repos) {
+    var byName = {};
+    repos.forEach(function (r) { byName[r.name.toLowerCase()] = r; });
+    items().forEach(function (li) {
+      var r = byName[(li.dataset.repo || "").toLowerCase()];
+      if (!r) return;
+      li.dataset.created = r.created_at;
+      li.dataset.modified = r.pushed_at;
+    });
+    update();
+  }
+  if (fresh) { applyFresh(fresh); return; }
+  fetch("https://api.github.com/users/Rami5743/repos?per_page=100", { headers: { Accept: "application/vnd.github+json" } })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!Array.isArray(data)) return;
+      var repos = data.map(function (r) { return { name: r.name, created_at: r.created_at, pushed_at: r.pushed_at }; });
+      try { sessionStorage.setItem(CACHE, JSON.stringify({ at: Date.now(), repos: repos })); } catch (err) { /* ignore */ }
+      applyFresh(repos);
+    })
+    .catch(function () { /* the dates written into the page stay */ });
+})();
+</script>
 <script>
 // Each linked site's own icon, read from its page (all of them live on this
 // same domain): the <link rel="icon"> it declares, the largest or an SVG one.
