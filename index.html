@@ -67,6 +67,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
+<script async src="https://rami5743.github.io/count.js"></script>
 <style>
   :root {
     --bg: #fbfaf7;
@@ -293,7 +294,7 @@
     <li data-repo="Cat_sol" data-created="2026-10-17T14:42:28Z" data-modified="2026-11-25T13:19:45Z"><a href="https://rami5743.github.io/Cat_sol/"><span class="ico" aria-hidden="true">🃏</span><span class="text"><span class="name"><span data-l="he">סוליטר מילים</span><span data-l="en" lang="en-US">Word Solitaire</span></span><span class="repo" translate="no">Cat_sol</span></span><span class="dates"></span></a></li>
     <li data-repo="Grp_Tab" data-created="2026-10-25T15:13:31Z" data-modified="2026-11-25T20:29:34Z"><a href="https://rami5743.github.io/Grp_Tab/"><span class="ico" aria-hidden="true">🔷</span><span class="text"><span class="name"><span data-l="he">טבלה מחזורית של החבורות הפשוטות הסופיות</span><span data-l="en" lang="en-US">A Periodic Table of the Finite Simple Groups</span></span><span class="repo" translate="no">Grp_Tab</span></span><span class="dates"></span></a></li>
     <li data-repo="ChemGame" data-created="2026-11-04T02:12:49Z" data-modified="2026-11-25T13:11:04Z"><a href="https://rami5743.github.io/ChemGame/" data-href-en="https://rami5743.github.io/ChemGame/?lang=en"><span class="ico" aria-hidden="true">⚛️</span><span class="text"><span class="name"><span data-l="he">אטומים ומולקולות</span><span data-l="en" lang="en-US">Atoms &amp; Molecules</span></span><span class="repo" translate="no">ChemGame</span></span><span class="dates"></span></a></li>
-    <li data-repo="Prince" data-created="2026-11-06T04:39:27Z" data-modified="2026-11-06T04:51:54Z"><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name"><span data-l="he">הנסיך הפרסי, משוחזר</span><span data-l="en" lang="en-US">Prince of Persia, Reconstructed</span></span><span class="repo" translate="no">Prince</span></span><span class="dates"></span></a></li>
+    <li data-repo="Prince" data-created="2026-11-06T04:39:27Z" data-modified="2026-11-23T07:57:53Z"><a href="https://rami5743.github.io/Prince/"><span class="ico" aria-hidden="true">⚔️</span><span class="text"><span class="name"><span data-l="he">הנסיך הפרסי, משוחזר</span><span data-l="en" lang="en-US">Prince of Persia, Reconstructed</span></span><span class="repo" translate="no">Prince</span></span><span class="dates"></span></a></li>
     <li data-repo="Euclid" data-created="2026-11-08T17:58:48Z" data-modified="2026-11-10T08:52:07Z"><a href="https://rami5743.github.io/Euclid/"><span class="ico" aria-hidden="true">📐</span><span class="text"><span class="name"><span data-l="he">אוקלידס</span><span data-l="en" lang="en-US">Euclid</span></span><span class="repo" translate="no">Euclid</span></span><span class="dates"></span></a></li>
     <li data-repo="elementals" data-created="2026-11-10T09:01:58Z" data-modified="2026-11-28T05:30:36Z"><a href="https://rami5743.github.io/elementals/"><span class="ico" aria-hidden="true">🔥</span><span class="text"><span class="name"><span data-l="he">שלבים למשחק <span translate="no">Elementals</span></span><span data-l="en" lang="en-US">Elementals Levels</span></span><span class="repo" translate="no">elementals</span></span><span class="dates"></span></a></li>
     <li data-repo="Transform-tree" data-created="2026-11-14T05:26:54Z" data-modified="2026-11-20T15:53:45Z"><a href="https://rami5743.github.io/Transform-tree/"><span class="ico" aria-hidden="true">🌳</span><span class="text"><span class="name"><span data-l="he">המרת עץ משפחה לתרשים</span><span data-l="en" lang="en-US">Family tree to chart</span></span><span class="repo" translate="no">Transform-tree</span></span><span class="dates"></span></a></li>
@@ -309,7 +310,7 @@
 <script>
 // Sorting the list: by date created, date of the last update, or name, each
 // either way. "Created" is the repository's creation on GitHub; "updated" is
-// the newest commit on its default branch, the one the page is served from,
+// the newest commit on main, the branch every page is served from,
 // so work on side branches does not count. The dates written into the page
 // are refreshed from the GitHub API (see the end of this script) and stay as
 // they are if that fails. The choice lives in the address (?sort=…&order=…)
@@ -445,9 +446,19 @@
     });
     if (!stale.length) return;
     Promise.all(stale.map(function (r) {
-      var url = "https://api.github.com/repos/" + r.full_name + "/commits?per_page=1&sha=" + encodeURIComponent(r.default_branch);
-      return fetch(url, { headers: { Accept: "application/vnd.github+json" } })
-        .then(function (res) { return res.ok ? res.json() : null; })
+      // The pages are served from main; a repository whose default branch is
+      // something else (Prince) still dates from main, and one with no main
+      // falls back to its default branch.
+      var base = "https://api.github.com/repos/" + r.full_name + "/commits?per_page=1&sha=";
+      // Only a branch that does not exist (404, 422) moves on to the default
+      // branch; any other failure, a rate limit say, keeps the date we had.
+      var get = function (branch) {
+        return fetch(base + encodeURIComponent(branch), { headers: { Accept: "application/vnd.github+json" } })
+          .then(function (res) { return res.ok ? res.json() : (res.status === 404 || res.status === 422 ? "missing" : null); });
+      };
+      return get("main")
+        .then(function (c) { return c === "missing" && r.default_branch !== "main" ? get(r.default_branch) : c; })
+        .then(function (c) { return c === "missing" ? null : c; })
         .then(function (c) {
           var date = c && c[0] && c[0].commit && c[0].commit.committer && c[0].commit.committer.date;
           if (date) main[r.name.toLowerCase()] = { pushed_at: r.pushed_at, date: date };
